@@ -3,11 +3,16 @@ package com.cilazatta.workshopmongo.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "user")
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private String id;
+	@Id
+	private String _id;
 	private String name;
 	private String email;
 	
@@ -15,19 +20,19 @@ public class User implements Serializable {
 		
 	}
 
-	public User(String id, String name, String email) {
+	public User(String _id, String name, String email) {
 		super();
-		this.id = id;
+		this._id = _id;
 		this.name = name;
 		this.email = email;
 	}
 
-	public String getId() {
-		return id;
+	public String get_id() {
+		return _id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void set_id(String _id) {
+		this._id = _id;
 	}
 
 	public String getName() {
@@ -48,7 +53,7 @@ public class User implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(_id);
 	}
 
 	@Override
@@ -60,9 +65,9 @@ public class User implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(_id, other._id);
 	}
-	
+
 	
 
 }
