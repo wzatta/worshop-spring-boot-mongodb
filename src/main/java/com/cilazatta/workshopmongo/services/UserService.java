@@ -5,8 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import com.cilazatta.workshopmongo.domain.User;
 import com.cilazatta.workshopmongo.dto.UserDTO;
 import com.cilazatta.workshopmongo.repository.UserRepository;
@@ -34,7 +32,12 @@ public class UserService {
 		UserDTO userDto = new UserDTO();
 		User use = userDto.fromDTO(objDto);
 		use = repo.insert(use);
-		
 		return new UserDTO(use);
 	}
+	
+	public void deleteById(String id) {
+		findById(id);
+		repo.deleteById(id);
+	}
+	
 }
