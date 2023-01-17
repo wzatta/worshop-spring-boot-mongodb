@@ -5,8 +5,10 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.cilazatta.workshopmongo.domain.User;
+import com.cilazatta.workshopmongo.dto.UserDTO;
 import com.cilazatta.workshopmongo.repository.UserRepository;
 import com.cilazatta.workshopmongo.services.exception.ObjectNotFoundException;
 
@@ -26,5 +28,13 @@ public class UserService {
 		
 		return obj.orElseThrow(()->new ObjectNotFoundException("Objeto não Encontrado"));
 		
+	}
+	
+	public UserDTO insert(UserDTO objDto) {
+		UserDTO userDto = new UserDTO();
+		User use = userDto.fromDTO(objDto);
+		use = repo.insert(use);
+		
+		return new UserDTO(use);
 	}
 }

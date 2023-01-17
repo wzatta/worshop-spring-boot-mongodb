@@ -45,6 +45,8 @@ public class UserDTO implements Serializable{
 		this.email = email;
 	}
 	
-	
+	public User fromDTO(UserDTO objDto) {
+		return new User(objDto.get_id(),objDto.getName(),objDto.getEmail());
+	}
 	
 }
