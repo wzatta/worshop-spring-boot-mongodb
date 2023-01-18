@@ -2,11 +2,12 @@ package com.cilazatta.workshopmongo.domain;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.cilazatta.workshopmongo.dto.AuthorDTO;
 
 @Document
 public class Post implements Serializable {
@@ -17,12 +18,12 @@ public class Post implements Serializable {
 	private Instant date;
 	private String title;
 	private String body;
-	private User author;
+	private AuthorDTO author;
 	
 	public Post() {
 	}
 
-	public Post(String idPost, Instant date, String title, String body, User author) {
+	public Post(String idPost, Instant date, String title, String body, AuthorDTO author) {
 		super();
 		this.idPost = idPost;
 		this.date = date;
@@ -63,11 +64,11 @@ public class Post implements Serializable {
 		this.body = body;
 	}
 
-	public User getAuthor() {
+	public AuthorDTO getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(User author) {
+	public void setAuthor(AuthorDTO author) {
 		this.author = author;
 	}
 
