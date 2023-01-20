@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.cilazatta.workshopmongo.services.exception.ObjectDateTimeParseException;
 import com.cilazatta.workshopmongo.services.exception.ObjectNotFoundException;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,6 +20,18 @@ public class ResourceExceptionHandler {
 				System.currentTimeMillis(),
 				status.value(),
 				"Não Encontrado",
+				e.getMessage(),
+				request.getRequestURI());
+		return ResponseEntity.status(status).body(err);
+	}
+	
+	@ExceptionHandler(ObjectDateTimeParseException.class)
+	public ResponseEntity<StandardError> dateIncompatible(ObjectDateTimeParseException e, HttpServletRequest request){
+		HttpStatus status = HttpStatus.BAD_REQUEST;
+		StandardError err = new StandardError(
+				System.currentTimeMillis(),
+				status.value(),
+				"Data (String) Incompativel",
 				e.getMessage(),
 				request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
