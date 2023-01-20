@@ -41,7 +41,8 @@ public class PostService {
 	
 	public List<Post> findByTitle(String text){ 
 		text = DecoderURL.decodeParam(text);
-		return postRepo.findByTitleContaining(text);
+		return postRepo.searchTitle(text);
+		//return postRepo.findByTitleContaining(text);
 	}
 	
 	public List<Post> findByDateAfter(String txtdate){
